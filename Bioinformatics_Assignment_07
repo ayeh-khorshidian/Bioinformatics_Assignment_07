@@ -1,0 +1,28 @@
+# Bioinformatics_Assignment_07.py
+
+# Task 1: Writing to a file
+with open('NumberList.txt', 'w') as file:
+    for number in range(1, 101):
+        file.write(f"{number}\n")
+
+# Task 2: Reading from a file
+total_sum = 0
+with open('NumberList.txt', 'r') as file:
+    for line in file:
+        number = int(line.strip())
+        print(number)
+        total_sum += number
+print(f"Total Sum: {total_sum}")
+
+# Task 3: Working with Directories
+import os
+
+directory = 'sequences'  # Change this to the path of your directory with sequence files
+with open('Output.txt', 'w') as output_file:
+    for filename in os.listdir(directory):
+        if filename.endswith('.txt'):
+            with open(os.path.join(directory, filename), 'r') as seq_file:
+                for line in seq_file:
+                    output_file.write(line)
+                output_file.write('||\n')
+
